@@ -1,0 +1,113 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.artist-add-new-item {
+  background-color: var.$primary-color-brown;
+  color: var.$background-color-light;
+  padding: var.$gutter-base var.$gutter-base / 2;
+  .add-item-panel {
+    flex-grow: 1;
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .isPublished-checkbox {
+        display: flex;
+        align-items: center;
+        gap: var.$gutter-base / 3;
+        input {
+          width: 1rem;
+          accent-color: gray;
+          padding: 0;
+          margin: 0%;
+        }
+      }
+    }
+    .form-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      input,
+      textarea,
+      select {
+        width: 100%;
+        min-height: 27px;
+        background-color: transparent;
+        border: 1px solid var.$background-color-light;
+        text-align: start;
+        outline: none;
+      }
+      .two-inputs-in-row {
+        display: flex;
+        gap: var.$gutter-base;
+        text-align: start;
+        .type-input,
+        .price-input {
+          flex-basis: 50%;
+        }
+      }
+      p {
+        margin: var.$gutter-base / 4 auto;
+      }
+      .capture-image-btn {
+        position: relative;
+        height: 19rem;
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        border: 2px dashed var.$background-color-light;
+
+        .capture-image-bg {
+          z-index: 2;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          margin: 0 auto;
+          img {
+            height: 65px;
+            width: 75px;
+            margin-bottom: var.$gutter-base / 3;
+          }
+        }
+      }
+    }
+    .form-header,
+    .two-inputs-in-row,
+    .capture-image-btn,
+    input:not(:last-of-type),
+    textarea {
+      margin-bottom: var.$gutter-base / 1.5;
+    }
+    .buttons {
+      display: flex;
+      gap: var.$gutter-base / 1.5;
+      .custom-btn {
+        @include mix.btn;
+        width: 100%;
+        font-size: 18px;
+        line-height: 21.09px;
+      }
+      .add-new-item-btn {
+        background-color: var.$primary-color-red;
+        color: var.$background-color-light;
+      }
+      .cancel-btn {
+        background-color: var.$background-color-base;
+        color: var.$text-color-base;
+      }
+    }
+  }
+}

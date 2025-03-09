@@ -1,0 +1,35 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.visitor-filters-page {
+  background-color: var.$primary-color-brown;
+  color: var.$background-color-light;
+  text-align: start;
+  padding: 5%;
+  .filter-header {
+    .close-filter-button {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    h2 {
+      color: var.$background-color-light;
+      font-weight: var.$font-weight-medium;
+    }
+  }
+  .filter-panel {
+    flex-grow: 1;
+    position: relative;
+    .filter-box {
+      gap: 1rem;
+      border-bottom: 2px solid;
+      padding: 8% 0;
+    }
+    .reset-filters-btn {
+      @include mix.btn;
+      margin-top: var.$gutter-base;
+      background-color: var.$background-color-light;
+    }
+  }
+}

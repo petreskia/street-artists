@@ -1,0 +1,63 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+section {
+  background-color: var.$background-color-light;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: calc(100vh - 69px);
+  overflow: scroll;
+}
+.flex-display,
+.flex-column-display,
+.flex-justify-content-display,
+.flex-space-between-display {
+  display: flex;
+}
+.flex-column-display {
+  flex-direction: column;
+}
+.flex-justify-content-display {
+  justify-content: center;
+}
+.flex-space-between-display {
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-brown {
+  @include mix.btn;
+  background-color: var.$primary-color-brown;
+  color: var.$background-color-light;
+}
+.large-btn {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 90%;
+  right: 0;
+  cursor: pointer;
+}
+
+input,
+select {
+  width: 100px;
+  height: 25px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid var.$background-color-light;
+  color: var.$background-color-light;
+  padding: 1%;
+}
+
+// Custom select input
+select {
+  appearance: none;
+  background: url('data:image/svg+xml,%3Csvg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M7 7L14 0H0L7 7Z" fill="%23EDD5BB"/%3E%3C/svg%3E')
+    no-repeat right 10px center;
+  background-size: 14px 7px;
+  padding-right: 30px;
+}

@@ -1,0 +1,30 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+.auction-page {
+  justify-content: center;
+  align-items: center;
+
+  .auction-page-inner {
+    height: 100%;
+    padding: 2rem;
+    h1 {
+      text-align: center;
+      color: var.$text-color-dark;
+    }
+    .custom-h1 {
+      font-size: 15px;
+    }
+  }
+  .auction-image {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .bid-amount {
+    color: var.$text-color-dark;
+    background-color: var.$background-color-secondary;
+  }
+  .current-bid {
+    color: var.$text-color-dark;
+  }
+}

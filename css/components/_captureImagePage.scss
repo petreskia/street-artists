@@ -1,0 +1,20 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.capture-image-page {
+  padding: var.$gutter-base * 1.5 var.$gutter-base / 2;
+  background-color: var.$primary-color-brown;
+  video {
+    min-height: 85%;
+    object-fit: cover;
+    margin-bottom: var.$gutter-base * 1.5;
+  }
+
+  .capture-snapshot-btn {
+    margin: 0 auto;
+    background: inherit;
+    border: none;
+    cursor: pointer;
+  }
+}

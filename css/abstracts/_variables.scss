@@ -1,0 +1,50 @@
+@use "sass:math";
+
+@function rem-calc($size) {
+  @return (math.div($size, 16)) * 1rem;
+}
+
+// --- Font settings ---
+$font-family-base: "Roboto", sans-serif;
+$font-family-secondary: "Reenie Beanie", cursive;
+
+// --- Font weights ---
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// --- Line height ---
+$line-height-base: 1.5;
+
+// --- Size settings ---
+$gutter-base: 2rem;
+
+// --- Color settings ---
+$background-color-light: #fcebd5;
+$background-color-secondary: #edd5bb;
+$background-color-tertiary: #e09686;
+$background-color-base: #e5e5e5;
+
+// Primary Colors
+$primary-color-brown: #a16a5e;
+$primary-color-red: #d44c2e;
+$primary-color-blue: #1b59ac;
+$primary-color-green: #1bac6f;
+
+// Text Colors
+$text-color-base: #5a5a5a;
+$text-color-light: #b9b9b9;
+$text-color-white: #f8f8f8;
+$text-color-dark: #000000;
+
+// --- Breakpoints ---
+$breakpoints: (
+  "mobile-s": 320px,
+  "mobile-m": 375px,
+  "mobile-l": 425px,
+  "tablet": 768px,
+  "laptop-m": 1024px,
+  "laptop-l": 1440px,
+  "four-k": 2560px,
+);

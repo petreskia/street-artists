@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="StreetARTists Web Platform" />
+    <title>StreetARTists</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <!-- Chart.js for charts and data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- JavaScript -->
+    <script type="module" src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- Common header structure -->
+    <header id="mainHeader" class="header">
+      <!-- Left Side: Logo (Visitor and Artist) -->
+      <div id="logo" class="logo hidden">
+        <a href="#landingPage"
+          ><img src="./images/logo.svg" alt="logo-icon"
+        /></a>
+      </div>
+
+      <!-- Center: Title or Selected Artist Name -->
+      <h1 id="headerTitle" class="h1-main-title">StreetARTists</h1>
+      <h1 id="artistName" class="h1-main-title hidden"></h1>
+
+      <!-- Right Side: Buttons and Hamburger Menu -->
+      <a href="#auctionPage" id="auctionButton" class="auction-button hidden">
+        <svg
+          width="36"
+          height="36"
+          viewBox="0 0 36 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.25 29.5V32.25H2.75V29.5H19.25ZM20.0557 2.94324L30.7505 13.638L28.8063 15.585L27.3487 15.0982L23.9429 18.5L31.7212 26.2784L29.777 28.2226L22 20.4442L18.6945 23.7497L19.0836 25.3062L17.138 27.2505L6.44325 16.5557L8.38888 14.6115L9.94263 14.9992L18.5969 6.34636L18.1115 4.88886L20.0557 2.94324Z"
+            fill="#A26A5E"
+          />
+        </svg>
+      </a>
+      <button id="hamburgerMenu" class="hamburger-menu hidden">
+        <svg
+          width="32"
+          height="25"
+          viewBox="0 0 32 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M32 4.99995V0.199951H0V4.99995H32ZM32 14.6V9.79995H0V14.6H32ZM32 24.2V19.4H0V24.2H32Z"
+            fill="#A26A5E"
+          />
+        </svg>
+      </button>
+
+      <!-- Dropdown menu for the hamburger button (Artist only) -->
+      <nav id="artistMenu" class="artist-menu hidden">
+        <ul>
+          <li><a href="#artistHomePage" class="menu-text">Home</a></li>
+          <li><a href="#artistItemsPage" class="menu-text">Items</a></li>
+          <li><a href="#auctionPage" class="menu-text">Auction</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- Landing Page -->
+      <section id="landingPage" class="landing-page page">
+        <div class="logo-container">
+          <img src="./images/Logo.png" alt="Street ART Icon" />
+        </div>
+        <div class="joinSection-container flex-column-display">
+          <div id="artistCard" class="artist-card flex-column-display">
+            <h2 class="artist-card-title styled-text">Join as Artist</h2>
+            <div class="artist-card-select">
+              <select id="users" class="select-btn">
+                <option value="">Choose</option>
+              </select>
+            </div>
+          </div>
+          <div id="visitorCard" class="visitor-card flex-column-display">
+            <h2 class="visitor-card-title styled-text">Join as Visitor</h2>
+          </div>
+        </div>
+      </section>
+      <!-- Artists - Home Page -->
+      <section id="artistHomePage" class="artist-home-page page">
+        <div class="container">
+          <!-- Count cards -->
+          <div class="count-box">
+            <div class="count-box-inner-text">
+              <div class="personal-info">
+                <div
+                  class="items-sold-widget flex-column-display flex-space-between-display"
+                >
+                  <p class="form-text">Total Items Sold</p>
+                  <span id="totalItemsSold"></span>
+                </div>
+                <div
+                  class="total-income-widget flex-column-display flex-space-between-display"
+                >
+                  <p class="form-text">Total Income</p>
+                  <span id="totalIncome"></span>
+                </div>
+              </div>
+              <div id="auctionItemCard" class="auction-item-info-box">
+                <div
+                  class="auction-item-info-widget flex-column-display flex-space-between-display"
+                >
+                  <p class="form-text">Live Auctioning Item</p>
+                  <span id="currentBid"></span>
+                  <p class="form-text">current bid</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Chart -->
+          <div class="stats-box">
+            <div class="container">
+              <p class="form-text align-left">Display my income for last</p>
+              <div class="filter-btns flex-space-between-display">
+                <button id="last7days">7 days</button>
+                <button id="last14days">14 days</button>
+                <button id="last30days">30 days</button>
+              </div>
+              <div class="chart">
+                <canvas id="myChart" class="myChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Artists - Items Page -->
+      <section id="artistItemsPage" class="artist-items-page page">
+        <div
+          id="artistItemsContainer"
+          class="artist-items-container flex-column-display"
+        ></div>
+        <div id="addNewItemPanel" class="add-new-item-panel">
+          <p class="form-text add-new-item-clickable-box">+ Add new Item</p>
+        </div>
+      </section>
+      <!-- Artists - Add New Item Page -->
+      <section id="artistAddNewItemPage" class="artist-add-new-item page">
+        <form id="addItemPanel" class="add-item-panel">
+          <div class="form-header">
+            <h2 class="subtitle update-on-edit">Add new Item</h2>
+            <div class="isPublished-checkbox">
+              <label for="checkIsPublished" class="form-text"
+                >Is published</label
+              >
+              <input type="checkbox" id="checkIsPublished" />
+            </div>
+          </div>
+          <div class="form-body">
+            <label for="title" class="form-text">Title</label>
+            <input type="text" id="title" />
+            <label for="description" class="form-text">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              cols="30"
+              rows="5"
+            ></textarea>
+            <div class="two-inputs-in-row">
+              <div class="type-input">
+                <label for="type" class="form-text">By Type</label>
+                <select name="item-type" id="type">
+                  <option value="type">Choose</option>
+                </select>
+              </div>
+              <div class="price-input">
+                <label for="price" class="form-text">Price</label>
+                <input id="price" type="number" />
+              </div>
+            </div>
+            <label for="imageURL" class="image-url form-text">Image URL</label>
+            <input type="url" id="imageURL" />
+            <p class="form-text">or</p>
+            <div id="captureImageBtn" class="capture-image-btn">
+              <div id="capturedImageBg" class="capture-image-bg"></div>
+              <div class="wrapper">
+                <img src="./images/Vector.svg" alt="camera-icon" />
+                <p class="form-text">Take a snapshot</p>
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button id="addNewItemBtn" class="add-new-item-btn custom-btn">
+              Add New Item
+            </button>
+            <button id="cancelBtn" class="cancel-btn custom-btn">Cancel</button>
+          </div>
+        </form>
+      </section>
+      <!-- Capture Image Page -->
+      <section id="captureImagePage" class="capture-image-page page">
+        <video id="liveStream" autoplay></video>
+        <canvas style="display: none" id="snapshotCanvas"></canvas>
+        <img id="previewImage" />
+        <button id="captureSnapshot" class="capture-snapshot-btn">
+          <img src="./images/Vector.svg" alt="camera-icon" />
+        </button>
+      </section>
+      <!-- Visitor - Home Page -->
+      <section id="visitorHomePage" class="visitor-home-page page">
+        <!-- Hero Section -->
+        <div class="welcome-section flex-space-between-display">
+          <div>
+            <h2 class="subtitle">
+              Looking for<br />
+              masterpiece?
+            </h2>
+          </div>
+          <div class="right-side">
+            <button id="findItemsBtn" class="btn-brown">Find one now!</button>
+          </div>
+        </div>
+        <!-- Images Slider -->
+        <div class="images-slider flex-column-display">
+          <div class="wrapper">
+            <div class="item-left item1">
+              <a href="#visitorListingPage"
+                ><img src="./images/image4.png" alt="image3"
+              /></a>
+            </div>
+            <div class="item-left item2">
+              <a href="#visitorListingPage"
+                ><img src="./images/image1.png" alt="image2"
+              /></a>
+            </div>
+            <div class="item-left item3">
+              <a href="#visitorListingPage"
+                ><img src="./images/image3.jpg" alt="image1"
+              /></a>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="item-right item1">
+              <a href="#visitorListingPage"
+                ><img src="./images/image3.jpg" alt="image1"
+              /></a>
+            </div>
+            <div class="item-right item2">
+              <a href="#visitorListingPage"
+                ><img src="./images/image2.png" alt="image2"
+              /></a>
+            </div>
+            <div class="item-right item3">
+              <a href="#visitorListingPage"
+                ><img src="./images/image4.png" alt="image3"
+              /></a>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel Slider -->
+        <div id="carousel" class="carousel flex-display">
+          <div class="carousel-arrow left-arrow">
+            <svg
+              width="15"
+              height="54"
+              viewBox="0 0 15 54"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 1L1 26.2877L14 53"
+                stroke="#A26A5E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="carousel-slider flex-display">
+            <div class="carousel-item flex-display">
+              <div class="left-side">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="./images/Ellipse 1.png" alt="user1" />
+                  </div>
+                  <p class="normal-text">
+                    Leanne Graham creates abstract murals with vibrant colors
+                    and dynamic patterns.
+                  </p>
+                </div>
+              </div>
+              <div class="right-side flex-display">
+                <p class="normal-text">
+                  Explore Leanne’s latest urban artwork and bid on exclusive
+                  pieces in the upcoming auction.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item flex-display">
+              <div class="left-side">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="./images/Ellipse 1.png" alt="user1" />
+                  </div>
+                  <p class="normal-text">
+                    Ervin Howell’s stencil art portrays powerful street
+                    portraits with social commentary.
+                  </p>
+                </div>
+              </div>
+              <div class="right-side flex-display">
+                <p class="normal-text">
+                  Discover Ervin’s unique street portraits and bid on his
+                  limited-edition pieces in our auction.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item flex-display">
+              <div class="left-side">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="./images/Ellipse 1.png" alt="user1" />
+                  </div>
+                  <p class="normal-text">
+                    Clementine Bauch’s graffiti art features bold colors and
+                    geometric shapes.
+                  </p>
+                </div>
+              </div>
+              <div class="right-side flex-display">
+                <p class="normal-text">
+                  Check out Clementine’s vibrant graffiti and bid on her
+                  stunning cityscape works in our auction.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-arrow right-arrow">
+            <svg
+              width="15"
+              height="54"
+              viewBox="0 0 15 54"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L14 26.2877L1 53"
+                stroke="#A26A5E"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </section>
+      <!-- Visitor - Listing Page -->
+      <section id="visitorListingPage" class="visitor-listing-page page">
+        <button id="filterButton" class="large-btn">
+          <svg
+            width="65"
+            height="67"
+            viewBox="0 0 77 79"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_d_125_448)">
+              <rect x="6" width="65" height="67" rx="2" fill="#D54C2E" />
+            </g>
+            <rect
+              x="18.1882"
+              y="13.4"
+              width="3.94118"
+              height="40.9882"
+              fill="#FCEBD5"
+            />
+            <rect
+              x="37.1058"
+              y="13.4"
+              width="3.94118"
+              height="40.9882"
+              fill="#FCEBD5"
+            />
+            <rect
+              x="55.2354"
+              y="13.4"
+              width="3.94118"
+              height="40.9882"
+              fill="#FCEBD5"
+            />
+            <rect
+              x="14.2471"
+              y="41.7765"
+              width="11.8235"
+              height="4.72941"
+              fill="#FCEBD5"
+            />
+            <rect
+              x="33.1647"
+              y="18.9177"
+              width="11.8235"
+              height="4.72941"
+              fill="#FCEBD5"
+            />
+            <rect
+              x="51.2941"
+              y="31.5294"
+              width="11.8235"
+              height="4.72941"
+              fill="#FCEBD5"
+            />
+            <defs>
+              <filter
+                id="filter0_d_125_448"
+                x="0"
+                y="0"
+                width="77"
+                height="79"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="6" />
+                <feGaussianBlur stdDeviation="3" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_125_448"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_125_448"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </button>
+        <div
+          id="itemsContainer"
+          class="items-container flex-column-display flex-justify-content-display"
+        ></div>
+      </section>
+      <!-- Visitor - Filters Page -->
+      <section id="visitorFiltersPage" class="visitor-filters-page page">
+        <div class="filter-header flex-space-between-display">
+          <div><h2 class="subtitle">Filter by</h2></div>
+          <div>
+            <button id="closeFilterBtn" class="close-filter-button">
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 42 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  opacity="0.8"
+                  d="M1.5 40.5L40.5 1.5"
+                  stroke="#FCEBD5"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  opacity="0.8"
+                  d="M1.5 1.5L40.5 40.5"
+                  stroke="#FCEBD5"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="filterPanel" class="filter-panel flex-column-display">
+          <div class="filter-box flex-column-display">
+            <label for="itemTitleInput" class="form-text">By Item Title</label>
+            <input id="itemTitleInput" type="text" class="input-text" />
+          </div>
+          <div class="filter-box flex-column-display">
+            <label for="artist" class="form-text">By Artist</label>
+            <select name="artist" id="artist" class="button-text">
+              <option>Choose</option>
+            </select>
+          </div>
+          <div class="filter-box flex-column-display">
+            <label for="minPrice" class="form-text">By Price</label>
+            <div class="flex-space-between-display">
+              <div class="min-label">
+                <label for="minPrice" class="form-text"
+                  >Min:
+                  <input
+                    type="number"
+                    name="min-price"
+                    id="minPrice"
+                    class="input-text"
+                /></label>
+              </div>
+              <div class="form-text">
+                <label for="maxPrice" class="form-text"
+                  >Max:
+                  <input
+                    type="number"
+                    name="max-price"
+                    id="maxPrice"
+                    class="input-text"
+                /></label>
+              </div>
+            </div>
+          </div>
+          <div class="filter-box flex-column-display">
+            <label for="itemTypeInput" class="form-text">By Type</label>
+            <select name="item-type" id="itemTypeInput" class="button-text">
+              <option value="type">Choose</option>
+            </select>
+          </div>
+          <button id="applyFilterBtn" class="large-btn">
+            <svg
+              width="65"
+              height="67"
+              viewBox="0 0 77 79"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_d_125_449)">
+                <rect x="6" width="65" height="67" rx="2" fill="#D54C2E" />
+              </g>
+              <path
+                d="M20 35.2727L34.6774 53L59 14"
+                stroke="#FCEBD5"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+              <defs>
+                <filter
+                  id="filter0_d_125_449"
+                  x="0"
+                  y="0"
+                  width="77"
+                  height="79"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy="6" />
+                  <feGaussianBlur stdDeviation="3" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_125_449"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_125_449"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </button>
+          <button id="resetFiltersBtn" class="reset-filters-btn">
+            Reset Filters
+          </button>
+        </div>
+      </section>
+      <!-- Auction Page -->
+      <section id="auctionPage" class="auction-page page">
+        <div id="auctionPageInner" class="auction-page-inner">
+          <h1 class="subtitle">
+            Auction for: <br />
+            <span id="itemTitle" class="h1-main-title"></span>
+            <br />
+            <span class="custom-h1">by</span>
+            <span id="itemArtist" class="h1-main-title"></span>
+          </h1>
+          <img id="itemImage" src="" alt="Item Image" class="auction-image" />
+          <p id="itemDescription"></p>
+          <p>Current Bid: <span id="current-bid"></span></p>
+          <input
+            type="number"
+            id="bidAmount"
+            class="bid-amount"
+            placeholder="Enter your bid"
+          />
+          <button id="bidButton">Place Bid</button>
+          <p id="timer">
+            Time Remaining: <span id="timerValue">120</span> seconds
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

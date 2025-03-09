@@ -1,0 +1,96 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.artist-items-page {
+  background-color: var.$background-color-secondary;
+  padding: var.$gutter-base 0;
+  gap: var.$gutter-base / 1.5;
+  .add-new-item-panel {
+    background-color: var.$background-color-light;
+    padding: var.$gutter-base / 3 var.$gutter-base / 2;
+    box-shadow: -1px 4px 8px -2px rgba(0, 0, 0, 0.81);
+    .add-new-item-clickable-box {
+      padding: var.$gutter-base * 1.15;
+      color: var.$primary-color-brown;
+      border: 2px dashed var.$primary-color-brown;
+      cursor: pointer;
+    }
+  }
+  .artist-items-container {
+    gap: var.$gutter-base / 1.5;
+    .card {
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .card-body {
+        color: var.$primary-color-brown;
+
+        .card-body-top {
+          .left-side {
+            text-align: start;
+            .item-date-created {
+              font-size: 9px;
+              color: var.$background-color-tertiary;
+              margin-top: var.$gutter-base / 10;
+            }
+          }
+
+          .card-price {
+            @include mix.btn;
+            padding: var.$gutter-base / 6 var.$gutter-base / 3;
+            background-color: var.$primary-color-brown;
+            color: var.$background-color-light;
+          }
+        }
+        .card-body-content {
+          text-align: start;
+          font-size: 12px;
+        }
+        .card-body-bottom {
+          flex-wrap: nowrap;
+          background-color: var.$primary-color-brown;
+          padding: var.$gutter-base / 3;
+        }
+
+        .card-body-top,
+        .card-body-content {
+          padding: var.$gutter-base / 4 var.$gutter-base / 3;
+          background-color: var.$background-color-light;
+        }
+
+        // Buttons styles
+        .btn-blue {
+          @include mix.btn;
+          color: var.$text-color-white;
+          background-color: var.$primary-color-blue;
+        }
+        .btn-green {
+          @include mix.btn;
+          color: var.$text-color-white;
+          background-color: var.$primary-color-green;
+        }
+        .btn-gray {
+          @include mix.btn;
+          color: var.$text-color-white;
+          background-color: var.$primary-color-blue;
+        }
+        .btn-red {
+          @include mix.btn;
+          color: var.$text-color-white;
+          background-color: var.$primary-color-red;
+        }
+        .btn-light {
+          @include mix.btn;
+          color: var.$primary-color-brown;
+          background-color: var.$background-color-light;
+        }
+      }
+    }
+  }
+}

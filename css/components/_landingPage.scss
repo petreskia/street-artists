@@ -1,0 +1,72 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.landing-page {
+  .logo-container {
+    img {
+      margin: var.$gutter-base * 2 auto;
+      height: 145px;
+      width: 145px;
+    }
+  }
+
+  .joinSection-container {
+    flex-grow: 1;
+    .artist-card,
+    .visitor-card {
+      padding: var.$gutter-base / 1.5;
+      width: 16.5rem;
+      height: 400px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .artist-card {
+      background-color: var.$background-color-secondary;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 0% 30%);
+      margin-bottom: -400px;
+      z-index: 1;
+      gap: var.$gutter-base / 3;
+
+      h2 {
+        color: var.$primary-color-brown;
+        margin-top: var.$gutter-base * 1;
+      }
+      .artist-card-select {
+        text-align: end;
+        .select-btn {
+          color: var.$primary-color-brown;
+          background-color: inherit;
+          border: 1px solid var.$primary-color-brown;
+          padding: 4px 8px;
+          width: 6rem;
+        }
+      }
+    }
+
+    .visitor-card {
+      background-color: var.$primary-color-brown;
+      justify-content: end;
+      clip-path: polygon(0% 30%, 100% 65%, 100% 100%, 0% 100%);
+      position: relative;
+      z-index: 0;
+
+      h2 {
+        color: var.$text-color-white;
+        margin-bottom: var.$gutter-base * 2;
+      }
+    }
+    h2 {
+      font-size: 45px;
+      line-height: 45px;
+    }
+  }
+}

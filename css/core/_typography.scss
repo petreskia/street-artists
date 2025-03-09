@@ -1,0 +1,62 @@
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+// H1 Main Title
+.h1-main-title {
+  font-family: var.$font-family-secondary;
+  font-weight: var.$font-weight-medium;
+  font-size: 30px;
+  line-height: 30px;
+  color: var.$primary-color-brown;
+  margin-bottom: 0;
+}
+
+// Subtitle
+.subtitle {
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-normal;
+  font-size: 30px;
+  line-height: 35px;
+}
+
+.card-title {
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-normal;
+  font-size: 14px;
+  line-height: 16.5px;
+}
+// Normal Text (Body Text)
+.normal-text {
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-normal;
+  font-size: 12px;
+  line-height: 12.5px;
+  // color: var.$text-color-base;
+}
+
+// Styled Text (Reenie Beanie)
+.styled-text {
+  font-family: var.$font-family-secondary;
+  font-weight: var.$font-weight-medium;
+  font-size: 30px;
+  line-height: 30px;
+  color: var.$text-color-base;
+}
+
+// Input Text
+.form-text {
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-light;
+  font-size: 18px;
+  line-height: 21.09px;
+  color: var.$background-color-secondary;
+}
+
+// Menu Text
+.menu-text {
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-light;
+  font-size: 32px;
+  line-height: 50px;
+  color: var.$text-color-dark;
+}

@@ -1,0 +1,65 @@
+@use "./variables" as var;
+@use "sass:math";
+
+// RESPONSIVE MOBILE-FIRST DESIGN MIXINS
+
+@mixin responsive($breakpoint) {
+  @media (max-width: map-get(var.$breakpoints, #{$breakpoint})) {
+    @content;
+  }
+}
+
+// Buttons common styles mixin
+@mixin btn {
+  padding: var.$gutter-base / 4.5 var.$gutter-base / 1.8;
+  font-family: var.$font-family-base;
+  font-weight: var.$font-weight-bold;
+  font-size: 12px;
+  line-height: 14.06px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+// Mixins for specific breakpoints
+@mixin four-k-styles {
+  @include responsive("four-k") {
+    @content;
+  }
+}
+
+@mixin laptop-l-styles {
+  @include responsive("laptop-l") {
+    @content;
+  }
+}
+
+@mixin laptop-m-styles {
+  @include responsive("laptop-m") {
+    @content;
+  }
+}
+
+@mixin tablet-styles {
+  @include responsive("tablet") {
+    @content;
+  }
+}
+
+@mixin mobile-l-styles {
+  @include responsive("mobile-l") {
+    @content;
+  }
+}
+
+@mixin mobile-m-styles {
+  @include responsive("mobile-m") {
+    @content;
+  }
+}
+
+@mixin mobile-s-styles {
+  @include responsive("mobile-s") {
+    @content;
+  }
+}
